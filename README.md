@@ -1,21 +1,14 @@
 # KSE_air-raid-prediction
 Репозиторій тестового проєкту для KSE відносно аналізу числового ряду повітряних тривог
 
-Air Raid Alert Prediction
+KSE Air Raid Prediction
 Goal
-Predict the number of air raid alerts using historical data.
+Analyze Ukrainian air raid alert data and build a model to predict future alerts using historical data.
 
 Dataset
-Ukrainian Air Raid Sirens Dataset
+Source: https://github.com/Vadimkin/ukrainian-air-raid-sirens-dataset
 
-Approach
-Data cleaning
-Exploratory analysis
-Feature engineering
-Model training
-Evaluation
-Results
-MAE: 2.1 - ??
+File: data/volunteer_data_uk.csv
 
-How to run
-python src/train_model.py - ??
+Status
+Project is in the exploratory analysis stage.
