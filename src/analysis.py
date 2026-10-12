@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import STL
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from statsmodels.tools.sm_exceptions import ConvergenceWarning
+from scipy.stats import wilcoxon
 
 warnings.simplefilter("ignore", ConvergenceWarning)
 
@@ -137,7 +138,9 @@ print(f"Кількість відрізків перевірки: {len(cv)} (п�
 print(cv[["mae_ets_trend", "mae_ets_season", "mae_naive"]].agg(["mean", "median"]).round(2))
 for col in ["mae_ets_trend", "mae_ets_season"]:
     share = (cv[col] < cv["mae_naive"]).mean() * 100
-    print(f"{col} точніша за наївний прогноз у {share:.0f}% відрізків")
+    p = wilcoxon(cv["mae_naive"] - cv[col]).pvalue
+    print(f"{col} точніша за наївний прогноз у {share:.0f}% відрізків "
+          f"(тест Вілкоксона, p = {p:.3f})")
 
 cv.set_index("forecast_start")[["mae_ets_trend", "mae_ets_season", "mae_naive"]].plot(
     figsize=(12, 4), alpha=0.8)
